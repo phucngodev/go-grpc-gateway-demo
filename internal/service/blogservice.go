@@ -76,6 +76,7 @@ func (s *BlogService) GetArticle(ctx context.Context, req *pb.GetArticleRequest)
 }
 
 func (s *BlogService) ListArticle(ctx context.Context, req *pb.ListArticleRequest) (*pb.ListArticleResponse, error) {
+	s.log.Infof("ListArticle %v", req)
 	articles, err := s.article.List(ctx)
 	resp := &pb.ListArticleResponse{}
 	for _, a := range articles {
