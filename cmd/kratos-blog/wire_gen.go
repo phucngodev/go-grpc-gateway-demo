@@ -14,6 +14,7 @@ import (
 	"kratos-blog/internal/data"
 	"kratos-blog/internal/server"
 	"kratos-blog/internal/service"
+	"kratos-blog/pkg/database"
 )
 
 import (
@@ -24,7 +25,7 @@ import (
 
 // wireApp init kratos application.
 func wireApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (*kratos.App, func(), error) {
-	db, err := data.NewDB(confData)
+	db, err := database.NewDB(confData)
 	if err != nil {
 		return nil, nil, err
 	}

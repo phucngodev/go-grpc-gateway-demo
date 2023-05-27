@@ -9,6 +9,9 @@ data:
   database:
     driver: mysql
     source: root:dev12345@tcp(127.0.0.1:3306)/testdb?charset=utf8mb4&parseTime=True&loc=Local
+    max_open_conns: 10
+    max_idle_conns: 3
+
   redis:
     addr: 127.0.0.1:6379
     read_timeout: 0.2s
