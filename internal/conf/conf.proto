@@ -6,9 +6,10 @@ option go_package = "kratos-blog/internal/conf;conf";
 import "google/protobuf/duration.proto";
 
 message Bootstrap {
-  Server server = 1;
-  Data data = 2;
-  Log log = 3;
+  App app = 1;
+  Server server = 2;
+  Data data = 3;
+  Log log = 4;
 }
 
 message Server {
@@ -48,4 +49,8 @@ message Log {
   int32 max_backups = 2;
   int32 max_age = 3;
   bool debug = 4;
+}
+
+message App {
+  string name = 1;
 }
