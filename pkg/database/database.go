@@ -8,7 +8,8 @@ import (
 	"gorm.io/gorm"
 )
 
-func NewDB(c *conf.Data) (*gorm.DB, error) {
+func NewDB(cfg *conf.Bootstrap) (*gorm.DB, error) {
+	c := cfg.Data
 	dns := c.Database.Source
 	db, err := gorm.Open(mysql.Open(dns), &gorm.Config{})
 	if err != nil {
