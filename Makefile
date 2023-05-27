@@ -25,6 +25,7 @@ init:
 	go install github.com/google/gnostic/cmd/protoc-gen-openapi@latest
 	go install github.com/google/wire/cmd/wire@latest
 	go install github.com/envoyproxy/protoc-gen-validate@latest
+	go install github.com/bufbuild/buf/cmd/buf@latest
 
 .PHONY: config
 # generate internal proto
@@ -56,6 +57,10 @@ generate:
 	go mod tidy
 	go get github.com/google/wire/cmd/wire@latest
 	go generate ./...
+
+.PHONY: buf
+buf:
+	buf generate
 
 .PHONY: all
 # generate all
