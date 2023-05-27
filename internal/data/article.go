@@ -7,6 +7,8 @@ import (
 	"github.com/go-kratos/kratos/v2/log"
 )
 
+var _ biz.ArticleRepo = (*articleRepo)(nil)
+
 type articleRepo struct {
 	data *Data
 	log  *log.Helper

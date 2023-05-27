@@ -12,6 +12,8 @@ import (
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 
+var _ log.Logger = (*ZapLogger)(nil)
+
 type ZapLogger struct {
 	log  *zap.Logger
 	Sync func() error
