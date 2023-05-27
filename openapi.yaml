@@ -1,0 +1,154 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: BlogService API
+    version: 0.0.1
+paths:
+    /v1/articles:
+        get:
+            tags:
+                - BlogService
+            operationId: BlogService_ListArticle
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.blog.v1.ListArticleResponse'
+        post:
+            tags:
+                - BlogService
+            operationId: BlogService_CreateArticle
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.blog.v1.CreateArticleRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.blog.v1.CreateArticleRespone'
+    /v1/articles/{id}:
+        get:
+            tags:
+                - BlogService
+            operationId: BlogService_GetArticle
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.blog.v1.GetArticleRespone'
+        post:
+            tags:
+                - BlogService
+            operationId: BlogService_UpdateArticle
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.blog.v1.UpdateArticleRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.blog.v1.UpdateArticleResponse'
+        delete:
+            tags:
+                - BlogService
+            operationId: BlogService_DeleteArticle
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.blog.v1.DeleteArticleRespone'
+components:
+    schemas:
+        api.blog.v1.Article:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int64
+                title:
+                    type: string
+                content:
+                    type: string
+        api.blog.v1.CreateArticleRequest:
+            type: object
+            properties:
+                title:
+                    type: string
+                content:
+                    type: string
+        api.blog.v1.CreateArticleRespone:
+            type: object
+            properties:
+                Article:
+                    $ref: '#/components/schemas/api.blog.v1.Article'
+        api.blog.v1.DeleteArticleRespone:
+            type: object
+            properties: {}
+        api.blog.v1.GetArticleRespone:
+            type: object
+            properties:
+                Article:
+                    $ref: '#/components/schemas/api.blog.v1.Article'
+        api.blog.v1.ListArticleResponse:
+            type: object
+            properties:
+                results:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.blog.v1.Article'
+        api.blog.v1.UpdateArticleRequest:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int64
+                title:
+                    type: string
+                content:
+                    type: string
+        api.blog.v1.UpdateArticleResponse:
+            type: object
+            properties:
+                Article:
+                    $ref: '#/components/schemas/api.blog.v1.Article'
+tags:
+    - name: BlogService
