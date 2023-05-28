@@ -22,3 +22,51 @@ func IsBlogInvalidId(err error) bool {
 func ErrorBlogInvalidId(format string, args ...interface{}) *errors.Error {
 	return errors.New(500, ErrorReason_BLOG_INVALID_ID.String(), fmt.Sprintf(format, args...))
 }
+
+func IsEmailNotAvailable(err error) bool {
+	if err == nil {
+		return false
+	}
+	e := errors.FromError(err)
+	return e.Reason == ErrorReason_EMAIL_NOT_AVAILABLE.String() && e.Code == 500
+}
+
+func ErrorEmailNotAvailable(format string, args ...interface{}) *errors.Error {
+	return errors.New(500, ErrorReason_EMAIL_NOT_AVAILABLE.String(), fmt.Sprintf(format, args...))
+}
+
+func IsEmailNotVerify(err error) bool {
+	if err == nil {
+		return false
+	}
+	e := errors.FromError(err)
+	return e.Reason == ErrorReason_EMAIL_NOT_VERIFY.String() && e.Code == 500
+}
+
+func ErrorEmailNotVerify(format string, args ...interface{}) *errors.Error {
+	return errors.New(500, ErrorReason_EMAIL_NOT_VERIFY.String(), fmt.Sprintf(format, args...))
+}
+
+func IsPasswordNotVerify(err error) bool {
+	if err == nil {
+		return false
+	}
+	e := errors.FromError(err)
+	return e.Reason == ErrorReason_PASSWORD_NOT_VERIFY.String() && e.Code == 500
+}
+
+func ErrorPasswordNotVerify(format string, args ...interface{}) *errors.Error {
+	return errors.New(500, ErrorReason_PASSWORD_NOT_VERIFY.String(), fmt.Sprintf(format, args...))
+}
+
+func IsTokenNotCreated(err error) bool {
+	if err == nil {
+		return false
+	}
+	e := errors.FromError(err)
+	return e.Reason == ErrorReason_TOKEN_NOT_CREATED.String() && e.Code == 500
+}
+
+func ErrorTokenNotCreated(format string, args ...interface{}) *errors.Error {
+	return errors.New(500, ErrorReason_TOKEN_NOT_CREATED.String(), fmt.Sprintf(format, args...))
+}

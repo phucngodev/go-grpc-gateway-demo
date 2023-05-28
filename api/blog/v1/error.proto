@@ -13,5 +13,11 @@ enum ErrorReason {
   option (errors.default_code) = 500;
 
   BLOG_INVALID_ID = 0;
+
+  EMAIL_NOT_AVAILABLE = 1;
+  EMAIL_NOT_VERIFY = 2;
+  PASSWORD_NOT_VERIFY = 3;
+
+  TOKEN_NOT_CREATED = 4;
 }
 

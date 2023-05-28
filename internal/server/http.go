@@ -11,7 +11,7 @@ import (
 )
 
 // NewHTTPServer new an HTTP server.
-func NewHTTPServer(cfg *conf.Bootstrap, blog *service.BlogService, logger log.Logger) *http.Server {
+func NewHTTPServer(cfg *conf.Bootstrap, blog *service.BlogService, user *service.UserService, logger log.Logger) *http.Server {
 	c := cfg.Server
 	var opts = []http.ServerOption{
 		http.Middleware(
@@ -29,5 +29,6 @@ func NewHTTPServer(cfg *conf.Bootstrap, blog *service.BlogService, logger log.Lo
 	}
 	srv := http.NewServer(opts...)
 	v1.RegisterBlogServiceHTTPServer(srv, blog)
+	v1.RegisterUserServiceHTTPServer(srv, user)
 	return srv
 }

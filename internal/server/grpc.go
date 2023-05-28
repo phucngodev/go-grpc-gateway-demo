@@ -11,7 +11,7 @@ import (
 )
 
 // NewGRPCServer new a gRPC server.
-func NewGRPCServer(cfg *conf.Bootstrap, greeter *service.BlogService, logger log.Logger) *grpc.Server {
+func NewGRPCServer(cfg *conf.Bootstrap, blog *service.BlogService, user *service.UserService, logger log.Logger) *grpc.Server {
 	c := cfg.Server
 	var opts = []grpc.ServerOption{
 		grpc.Middleware(
@@ -28,6 +28,7 @@ func NewGRPCServer(cfg *conf.Bootstrap, greeter *service.BlogService, logger log
 		opts = append(opts, grpc.Timeout(c.Grpc.Timeout.AsDuration()))
 	}
 	srv := grpc.NewServer(opts...)
-	v1.RegisterBlogServiceServer(srv, greeter)
+	v1.RegisterBlogServiceServer(srv, blog)
+	v1.RegisterUserServiceServer(srv, user)
 	return srv
 }

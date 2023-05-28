@@ -23,3 +23,6 @@ log:
   max_backups: 10
   max_age: 30
   debug: true
+
+JWT:
+  secret: jflkdsakjfjalskjfliworueoiwkfd

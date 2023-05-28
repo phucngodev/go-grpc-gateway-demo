@@ -45,8 +45,11 @@ func createApp(path string) (*kratos.App, func(), error) {
 	articleRepo := data.NewArticleRepo(dataData, logger)
 	articleUsercase := biz.NewArticleUsercase(articleRepo, logger)
 	blogService := service.NewBlogService(articleUsercase, logger)
-	grpcServer := server.NewGRPCServer(bootstrap, blogService, logger)
-	httpServer := server.NewHTTPServer(bootstrap, blogService, logger)
+	userRepo := data.NewUserRepo(dataData)
+	userUsercase := biz.NewUserUsercase(userRepo, bootstrap)
+	userService := service.NewUserService(userUsercase, logger)
+	grpcServer := server.NewGRPCServer(bootstrap, blogService, userService, logger)
+	httpServer := server.NewHTTPServer(bootstrap, blogService, userService, logger)
 	app := newApp(logger, grpcServer, httpServer)
 	return app, func() {
 		cleanup()

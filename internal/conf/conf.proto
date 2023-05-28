@@ -10,6 +10,7 @@ message Bootstrap {
   Server server = 2;
   Data data = 3;
   Log log = 4;
+  JWT jwt = 5;
 }
 
 message Server {
@@ -53,4 +54,8 @@ message Log {
 
 message App {
   string name = 1;
+}
+
+message JWT {
+  string secret = 1;
 }

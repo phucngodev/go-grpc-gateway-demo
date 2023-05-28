@@ -3,7 +3,7 @@
 
 openapi: 3.0.3
 info:
-    title: BlogService API
+    title: ""
     version: 0.0.1
 paths:
     /v1/articles:
@@ -96,6 +96,42 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/api.blog.v1.DeleteArticleRespone'
+    /v1/users/login:
+        post:
+            tags:
+                - UserService
+            operationId: UserService_Login
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.blog.v1.LoginRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.blog.v1.AuthResponse'
+    /v1/users/register:
+        post:
+            tags:
+                - UserService
+            operationId: UserService_Register
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.blog.v1.RegisterRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.blog.v1.AuthResponse'
 components:
     schemas:
         api.blog.v1.Article:
@@ -107,6 +143,15 @@ components:
                 title:
                     type: string
                 content:
+                    type: string
+        api.blog.v1.AuthResponse:
+            type: object
+            properties:
+                email:
+                    type: string
+                token:
+                    type: string
+                username:
                     type: string
         api.blog.v1.CreateArticleRequest:
             type: object
@@ -135,6 +180,20 @@ components:
                     type: array
                     items:
                         $ref: '#/components/schemas/api.blog.v1.Article'
+        api.blog.v1.LoginRequest:
+            type: object
+            properties:
+                email:
+                    type: string
+                password:
+                    type: string
+        api.blog.v1.RegisterRequest:
+            type: object
+            properties:
+                email:
+                    type: string
+                password:
+                    type: string
         api.blog.v1.UpdateArticleRequest:
             type: object
             properties:
@@ -152,3 +211,4 @@ components:
                     $ref: '#/components/schemas/api.blog.v1.Article'
 tags:
     - name: BlogService
+    - name: UserService
